@@ -1,0 +1,41 @@
+POST http://localhost:8080/user/login
+Content-Type: application/json
+
+{
+  "username":"lisi",
+  "userPwd":"123456"
+}
+
+###
+POST http://localhost:8080/headline/publish
+token:eyJhbGciOiJIUUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDc0NjQ0MLQw0lEqLU4t8kxRsjKqBQDgd3ySLwAAAA.kRenAteeXWw-ADddC6qu2KW6HDfdCN8zyvHPWOLQ871gmgsAqnI8mfN4nuoSTVhrgmGiz3dYpsSr4pnp-V_RBQ
+Content-Type: application/json
+
+{
+  "title":"文章标题2",
+  "article":"文章内容2",
+  "type":"2"
+}
+
+###
+POST http://localhost:8080/headline/findHeadlineByHid?hid=8
+token:eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDc0NjSxNDUw0lEqLU4t8kxRsjKqBQDn7owCLwAAAA.6NsO5n3CraESensMFrsDGyC0_XPrfuTSSUPb5OjznRyrssGws6UwNPyBZV-jgSUJPtPUnoFNn_ybZgCIRCfgdA
+
+
+###
+POST http://localhost:8080/headline/update
+token:eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDc0NjQ1MDC31FEqLU4t8kxRsjKqBQCSgNLpLwAAAA.hByHPK68pnIQ-PwTioXNt4ew2ffTfBJjVI7S1nSzPYhZyFEW_HHpiWIaCcAIK7UCvUFh5lBG7fDG8smnkqpAMg
+Content-Type: application/json
+
+{
+    "hid":"1",
+    "title":"更新文章标题",
+    "article":"更新文章内容",
+    "type":"2"
+}
+
+###
+POST http://localhost:8080/headline/removeByHid?hid=21
+token:eyJhbGciOiJIUzUxMiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAA_6tWKi5NUrJSiox099ANDXYNUtJRSq0oULIyNDc0NjQ1MDE31FEqLU4t8kxRsjKqBQCcNq05LwAAAA.1XGCE5lfxM3780NbNjM0k5KYATM4MNccBH3yYDiyftX75cANjd5d3XERznsx4whJ2mrFS7iUhQeHKCMVl6vadQ
+
+

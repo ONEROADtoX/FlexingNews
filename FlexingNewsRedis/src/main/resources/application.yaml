@@ -1,0 +1,109 @@
+# server配置
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  # 基础数据库配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/sm_db
+      username: root
+      password: TY799abc
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      # 初始化时建立物理连接的个数
+      initial-size: 5
+      # 连接池的最小空闲数量
+      min-idle: 5
+      # 连接池最大连接数量
+      max-active: 20
+      # 获取连接时最大等待时间，单位毫秒
+      max-wait: 60000
+      stat-view-servlet:
+        # 是否启用StatViewServlet默认值true
+        enabled: true
+        url-pattern: /druid/*
+      web-stat-filter:
+        # 是否启用StatFilter默认值true
+        enabled: true
+        url-pattern: /*
+
+  # Sharding-JDBC的配置
+  shardingsphere:
+    datasource:
+      names: master,slave
+      #主数据库
+      master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/sm_db
+        username: root
+        password: TY799abc
+      #从数据库
+      slave:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3307/sm_db
+        username: root
+        password: TY799abc
+    ###配置读写分离
+    masterslave:
+      ###配置从库选择策略，提供轮询与随机，这里选择用轮询（从库做集群）
+      load-balance-algorithm-type: round_robin
+      #### 最终的数据源名称
+      name: ds_ms
+      ####指定主数据库
+      master-data-source-name: master
+      ####指定从数据库
+      slave-data-source-names: slave
+
+  # Reids缓存
+  data:
+    redis:
+      host: 192.168.86.128
+      port: 6379
+
+
+# mybatis-plus的配置
+mybatis-plus:
+  type-aliases-package: com.oneroad.pojo
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted  #全局逻辑删除
+      id-type: auto #主键策略自增长
+      table-prefix: news_ # 设置表的前缀
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#jwt配置
+jwt:
+  token:
+    tokenExpiration: 120 #有效时间,单位分钟
+    tokenSignKey: oneroad123  #当前程序签名秘钥 自定义
+
+# springdoc-openapi项目配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.oneroad
+# knife4j的增强配置，不需要增强可以不配
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+
+
+logging:
+  level:
+    com.oneroad.mapper: debug
