@@ -1,4 +1,6 @@
-一个SpringBoot练手项目
+FlexingNews网站开发
+
+前后端分离，单纯负责后端开发，属于一个SpringBoot练手项目
 
 
 JDK：20
